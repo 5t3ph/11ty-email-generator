@@ -1,0 +1,129 @@
+---
+layout: "emailBase.njk"
+---
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>
+    {% if subject %}{{ subject }} | {% endif %}{{ meta.senderName }}
+  </title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Arbutus+Slab&display=swap"
+    rel="stylesheet"
+  />
+  <!--[if gte mso 10]>
+    <style type="text/css">
+      h1, h2, p, a { font-family: Arial, sans-serif !important; }
+      h1, h2 { font-weight: bold !important; }
+      p { line-height: 24px !important; }
+      .col-pad-left, .col-pad { padding-left: 40px !important; }
+      .col-pad-right, .col-pad { padding-right: 40px !important; }
+    </style>
+  <![endif]-->
+  {%- set css %} {% include "public/css/emails.css" %} {% endset %}
+  <style>
+    @media screen and (min-width: 1px) {
+        h1,
+        h2 {
+          font-family: "Arbutus Slab";
+        }
+    }
+    {{ css | safe }}
+  </style>
+</head>
+<body>
+  <table class="wrapper" width="100%">
+    <tbody>
+      {%- if preheader %}
+      <tr>
+        <td
+          align="middle"
+          class="preheader{% if hidePreheader %} preheader-hidden{% endif %}"
+        >
+          <center>
+            {{ preheader }}
+          </center>
+          &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+          &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+          &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+        </td>
+      </tr>
+      {% endif %}
+      <tr>
+        <td class="wrapper" align="center" width="100%">
+          <table class="body">
+            <tbody>
+              {% emailSpacer %}
+              <tr>
+                <td align="center" class="col-pad">
+                  <center>
+                    <img
+                      class="logo"
+                      src="{{ meta.logoUrl }}"
+                      height="{{ meta.logoHeight }}"
+                      alt="{{ meta.logoAlt }}"
+                    />
+                  </center>
+                </td>
+              </tr>
+              {%- if heroImg %}
+              {% emailSpacer %}
+              <tr>
+                <td>
+                  <center>
+                    <img src="{{ heroImg }}" height="{{ heroImgHeight }}"  width="600" />
+                  </center>
+                </td>
+              </tr>
+              {% endif %}
+              {%- if headline %} 
+              {% emailSpacer %}
+              <tr>
+                <td class="col-pad">
+                  <h1>{{ headline }}</h1>
+                </td>
+              </tr>
+              {% endif %} 
+              {%- emailSpacer 'small' %}
+              <tr>
+                <td class="col-pad">
+                  {{ content | safe }}
+                </td>
+              </tr>
+              {% if ctaLink %}
+              {% emailSpacer 'small' %}
+              <tr>
+                <td class="col-pad">
+                  <div>
+                    <!--[if mso]>
+  <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{ ctaLink }}" style="v-text-anchor:middle; height: {{ meta.ctaButtonHeight }}; width: {{ meta.ctaButtonWidth }}" class="button-mso" arcsize="10%" stroke="f" fillcolor="{{ meta.ctaButtonColor }}">
+    <w:anchorlock/>
+    <center>
+  <![endif]-->
+                    <a href="{{ ctaLink }}" class="button">{{ ctaText }}</a>
+                    <!--[if mso]>
+    </center>
+  </v:roundrect>
+<![endif]-->
+                  </div>
+                </td>
+              </tr>
+              {% endif %}
+              {% emailSpacer %}
+              <tr class="background-primary">
+                <td class="background-primary col-pad" align="center">
+                  <p class="ink-dark">
+                    © {% year %}
+                    <a href="{{ meta.senderWebsite }}">{{ meta.senderName }}</a><br/>
+                    <small class="ink-dark">{{ meta.senderAddress }} | <a href="{{ meta.unsubscribe }}">Unsubscribe</a></small>
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>

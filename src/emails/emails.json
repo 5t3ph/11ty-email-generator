@@ -1,0 +1,4 @@
+{
+  "layout": "email.njk",
+  "tags": "emails"
+}

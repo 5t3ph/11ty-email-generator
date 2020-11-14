@@ -1,0 +1,62 @@
+// stylelint-disable
+
+/*
+These are email development reset items needed for the best chance at cross-browser compatibility for your email template.
+
+You'll likely leave these untouched, particularly if using the theme system.
+*/
+
+@media screen and (min-width: 1px) {
+  [x-apple-data-detectors],
+  [href^="tel"] {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+}
+
+body {
+  background: color("background");
+  height: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  box-sizing: border-box;
+  // prettier-ignore
+  Margin:0;
+  min-width: 100%;
+  padding: 0;
+  text-align: left;
+  width: 100% !important;
+}
+
+table,
+td {
+  border: 0;
+  padding: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  vertical-align: top;
+}
+
+td {
+  color: color("text");
+  border-collapse: collapse !important;
+}
+
+center {
+  min-width: none !important;
+  width: 100%;
+}
+
+body,
+td,
+p,
+li {
+  line-height: 1.5;
+  font-size: $font-size-text;
+  font-family: $font-family;
+  color: color("text");
+}
+
+a:not([class]) {
+  color: $link-color;
+}

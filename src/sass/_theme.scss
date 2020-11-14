@@ -1,0 +1,45 @@
+$color-primary: #27989c !default;
+$color-secondary: #cb2ac3 !default;
+$color-background: mix($color-primary, #fff, 40%);
+
+$brand-colors: (
+  "primary": $color-primary,
+  "secondary": $color-secondary,
+) !default;
+
+$color-body: scale-color(
+  $color-primary,
+  $lightness: -80%,
+  $saturation: -20%
+) !default;
+
+$colors: map-merge(
+  $brand-colors,
+  (
+    "text": $color-body,
+    "background": $color-background,
+    "light": #fff,
+    "dark": rgba(black, 0.87),
+  )
+);
+
+@function color($key) {
+  @return map-get($colors, $key);
+}
+
+// Add/remove to selectively generate `ink` (text color) classes
+$ink-colors: "text", "light", "dark" !default;
+
+// Add/remove to selectively generate `background` classes
+$background-colors: "primary", "secondary" !default;
+
+$link-color: color("secondary") !default;
+$button-width: 200px !default;
+
+$strong-font-weight: 600 !default;
+$font-size-h1: 2.5rem !default;
+$font-size-h2: 1.75rem !default;
+$font-size-text: 1.15rem !default;
+
+$font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans,
+  Ubuntu, Cantarell, "Helvetica Neue", sans-serif !default;

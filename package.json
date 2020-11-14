@@ -1,6 +1,6 @@
 {
-  "name": "11ty-sass-skeleton",
-  "version": "1.1.0",
+  "name": "11ty-email-generator",
+  "version": "1.0.0",
   "description": "",
   "main": "index.html",
   "scripts": {
@@ -8,24 +8,24 @@
     "watch:eleventy": "eleventy --serve",
     "build:sass": "sass  --no-source-map src/sass:public/css",
     "build:eleventy": "eleventy",
-    "postbuild": "postcss public/css/*.css -u autoprefixer cssnano -r",
-    "start": "npm-run-all build:sass --parallel watch:*",
-    "build": "npm-run-all build:sass build:eleventy"
+    "prefix": "postcss public/css/*.css -u autoprefixer -r",
+    "start": "cross-env ELEVENTY_ENV=dev npm-run-all build:sass --parallel watch:*",
+    "build": "cross-env ELEVENTY_ENV=prod npm-run-all build:sass prefix build:eleventy"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/5t3ph/11ty-sass-skeleton.git"
+    "url": "git+https://github.com/5t3ph/11ty-email-generator.git"
   },
   "author": "5t3ph",
   "license": "ISC",
   "dependencies": {
-    "@11ty/eleventy": "^0.11.0",
+    "@11ty/eleventy": "^0.11.1",
     "autoprefixer": "^9.8.6",
     "cross-env": "^7.0.2",
-    "cssnano": "^4.1.10",
+    "juice": "^7.0.0",
     "npm-run-all": "^4.1.5",
-    "postcss-cli": "^8.1.0",
-    "sass": "^1.26.10"
+    "postcss-cli": "^8.2.0",
+    "sass": "^1.29.0"
   },
   "browserslist": [
     "last 2 versions"

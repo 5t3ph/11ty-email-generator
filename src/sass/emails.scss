@@ -1,0 +1,129 @@
+@import "theme";
+@import "reset";
+
+/* Typography */
+
+// The web font is added into the head of email.njk
+
+h1,
+h2 {
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+  font-weight: $strong-font-weight;
+  // prettier-ignore
+  Margin: 0;
+}
+
+h1 {
+  font-size: $font-size-h1;
+}
+
+h2 {
+  font-size: $font-size-h2;
+}
+
+/* Layout */
+
+.preheader {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  width: 100%;
+  text-align: center;
+  padding-top: 8px;
+
+  &-hidden {
+    display: none;
+    max-height: 0px;
+    overflow: hidden;
+  }
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  background-color: color("background");
+}
+
+.body {
+  max-width: 600px;
+  width: 100%;
+  background: color("light");
+  // prettier-ignore
+  Margin: 0 auto;
+
+  img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    display: block;
+    outline: 0;
+    text-align: center;
+    text-decoration: none;
+  }
+}
+
+// Remember: we're in email land, so we have to do things a bit different!
+// Such as - an explicit width, and a pixel line-height
+// Email clients also do not generally support :focus or :hover
+.button {
+  background-color: $link-color;
+  border-radius: 4px;
+  color: color("light");
+  display: inline-block;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 40px;
+  width: $button-width;
+  text-align: center;
+  text-decoration: none;
+  -webkit-text-size-adjust: none;
+}
+
+/* Utilities */
+
+.col-pad-left,
+.col-pad {
+  padding-left: 40px;
+}
+
+.col-pad-right,
+.col-pad {
+  padding-right: 40px;
+}
+
+@media screen and (max-width: 600px) {
+  .col-pad-left,
+  .col-pad {
+    padding-left: 16px !important;
+  }
+
+  .col-pad-right,
+  .col-pad {
+    padding-right: 16px !important;
+  }
+}
+
+.spacer {
+  padding-top: 40px;
+}
+
+.spacer-small {
+  padding-top: 20px;
+}
+
+@each $key in $background-colors {
+  .background-#{$key} {
+    background-color: color($key);
+  }
+}
+
+@each $key in $ink-colors {
+  .ink-#{$key} {
+    color: color($key);
+
+    > a {
+      color: inherit;
+    }
+  }
+}
